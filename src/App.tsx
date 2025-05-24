@@ -2,7 +2,7 @@
 function App() {
   return (
     <div className="">
-      Hello world
+      ho nguyen tai loi
     </div>
   )
 }
