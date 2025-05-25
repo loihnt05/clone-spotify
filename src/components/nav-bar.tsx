@@ -5,7 +5,7 @@ import {TiFolderOpen} from "react-icons/ti";
 import {GrInstallOption} from "react-icons/gr";
 import {useRef} from "react";
 
-function NavBar() {
+function NavBar({children}: { children: any }) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleDivFocus = () => {
@@ -14,7 +14,7 @@ function NavBar() {
         }
     };
     return (
-        <div className="h-1000 bg-blue-300">
+        <div className="">
             <div className="bg-black flex w-full sticky top-0 items-stretch">
                 {/*spotify*/}
                 <div className="flex p-5 hover:cursor-pointer">
@@ -22,6 +22,7 @@ function NavBar() {
                         <FaSpotify className="text-white text-3xl" title="Spotify"/>
                     </a>
                 </div>
+
                 {/*search*/}
                 <div className="flex justify-center gap-2 pr-10 ">
                     <div className="items-center flex ">
@@ -104,6 +105,9 @@ function NavBar() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="w-full h-screen">
+                {children}
             </div>
         </div>
 
