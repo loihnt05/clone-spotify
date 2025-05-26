@@ -83,12 +83,10 @@ function NavBar({children}: { children: React.ReactNode }) {
                     </div>
                     <div className="flex items-center px-5">
                         <div className="flex justify-center">
-                            <button className="flex items-center gap-1 text-zinc-400
-                            group transition-colors font-semibold
-                            hover:cursor-pointer hover:text-white">
-                                <GrInstallOption
-                                    className="font-semibold mt-1 text-zinc-400 group-hover:text-white
-                                    transition-colors"/>
+                            <button
+                                className="flex items-center gap-1 text-zinc-400 group transition-colors font-semibold hover:cursor-pointer hover:text-white">
+                            <GrInstallOption
+                                className="font-semibold mt-1 text-zinc-400 group-hover:text-white transition-colors"/>
                                 Install App
                             </button>
                         </div>

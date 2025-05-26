@@ -3,6 +3,8 @@ import {useEffect, useRef, useState} from "react";
 import {GoPlus} from "react-icons/go";
 import {TbWorld} from "react-icons/tb";
 import PodcastList from "./components/podcast-list.tsx";
+import {footer} from "./assets/footer.ts";
+import {FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa";
 
 function App() {
     const leftMin = (w: number) => {
@@ -146,6 +148,54 @@ function App() {
                 ">
                     <PodcastList key='1'/>
                     <PodcastList key='2'/>
+                    {/*footer*/}
+                    <div className="mt-5">
+                        <hr className="border-zinc-700 opacity-50"/>
+                        <div className="grid grid-cols-5 gap-2 pt-13 pb-10">
+                            {
+                                footer.map((item, index) => {
+                                    return (
+                                        <div key={index} className="flex flex-col items-start gap-2">
+                                            <div className="text-white font-bold tracking-tight text-sm">{item.header}</div>
+                                            <div className="text-neutral-400 flex gap-2 flex-col">
+                                                {
+                                                item.contents.map((link, index) => {
+                                                    return (
+                                                        <div key={index} className="flex flex-col tracking-tight font-semibold text-xs hover:underline hover:cursor-pointer hover:text-white">
+                                                            {link}
+                                                        </div>
+                                                    );
+                                                })
+                                            }</div>
+                                        </div>
+                                    );
+                                })
+                            }
+                            <div className="flex flex-row items-start gap-3 ml-auto">
+
+                                <div className="flex rounded-full bg-neutral-800 p-2 hover:cursor-pointer hover:opacity-90 transition-all">
+                                    <button className="text-white hover:cursor-pointer">
+                                        <FaInstagram/>
+                                    </button>
+                                </div>
+                                <div className="flex rounded-full bg-neutral-800 p-2 hover:cursor-pointer hover:opacity-90 transition-all">
+                                    <button className="text-white hover:cursor-pointer">
+                                        <FaTwitter/>
+                                    </button>
+                                </div>
+                                <div className="flex rounded-full bg-neutral-800 p-2 hover:cursor-pointer hover:opacity-90 transition-all">
+                                    <button className="text-white hover:cursor-pointer">
+                                        <FaFacebook/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr className="border-zinc-700 opacity-50"/>
+                        <div className="text-neutral-400 text-xs pt-8 pb-10">
+                            © 2025 Spotify AB
+                        </div>
+                    </div>
                 </div>
             </div>
         </NavBar>);

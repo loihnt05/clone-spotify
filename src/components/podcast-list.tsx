@@ -30,14 +30,14 @@ function PodcastList() {
                         }
                     </div>
                 </div>
-                <div className="absolute top-3/8 -left-3 items-center justify-center lg:flex hidden">
+                <div className="absolute top-3/8 -left-3 items-center justify-center group-hover:flex hidden">
                     <button className="text-white bg-neutral-900 rounded-full size-9
                                         flex items-center justify-center mr-2 hover:bg-neutral-800 hover:cursor-pointer
                     ">
                         <SlArrowLeft className='text-white rounded-full size-4 mr-0.5'/>
                     </button>
                 </div>
-                <div className="absolute top-3/8 -right-5 items-center justify-center lg:flex hidden">
+                <div className="absolute top-3/8 -right-5 items-center justify-center group-hover:flex hidden">
                     <button className="text-white bg-neutral-900 rounded-full size-9
                                         flex items-center justify-center mr-2 hover:bg-neutral-800 hover:cursor-pointer
                     ">
