@@ -9,11 +9,11 @@ function App() {
         return w * 90 / 419;
     }
     const leftMax = (w: number) => {
-        return w / 3;
+        return w * 2 / 5;
     }
     const parentRef = useRef<HTMLDivElement>(null);
     const [parentWidth, setParentWidth] = useState(0);
-    const [width, setWidth] = useState(leftMin(parentWidth));
+    const [width, setWidth] = useState(leftMax(parentWidth));
     const [isDragging, setIsDragging] = useState(false);
     const isResizing = useRef(false);
 
@@ -51,7 +51,7 @@ function App() {
         <NavBar>
             <div ref={parentRef} className="w-full h-full flex bg-black pb-4">
                 {/*left*/}
-                <div className={`h-full bg-neutral-900 rounded-lg ml-2 mb-2`}
+                <div className={`h-full bg-neutral-900 rounded-lg ml-2 mb-2 select-none`}
                      style={{width: `${width}px`, minWidth: `${leftMin(parentWidth)}px`}}>
                     {/*header*/}
                     <header className="text-white font-bold text-md flex py-2 px-4 items-center">
@@ -64,7 +64,7 @@ function App() {
                     {/*body*/}
                     <div className="w-full h-4/7 overflow-auto">
                         {/*tab1*/}
-                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-800 p-3">
+                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-800 p-5">
                             <div className="font-bold text-md text-white">
                                 Create your first playlist
                             </div>
@@ -78,7 +78,7 @@ function App() {
                             </div>
                         </div>
                         {/*tab2*/}
-                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-800 p-3">
+                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-800 p-5">
                             <div className="font-bold text-md text-white">
                                 Let's find some podcast to follow
                             </div>

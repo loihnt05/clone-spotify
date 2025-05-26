@@ -3,9 +3,9 @@ import {GoHomeFill} from "react-icons/go";
 import {IoIosSearch} from "react-icons/io";
 import {TiFolderOpen} from "react-icons/ti";
 import {GrInstallOption} from "react-icons/gr";
-import {useRef} from "react";
+import React, {useRef} from "react";
 
-function NavBar({children}: { children: any }) {
+function NavBar({children}: { children: React.ReactNode }) {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
