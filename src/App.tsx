@@ -2,57 +2,59 @@ import NavBar from "./components/nav-bar.tsx";
 import {useEffect, useRef, useState} from "react";
 import {GoPlus} from "react-icons/go";
 import {TbWorld} from "react-icons/tb";
+import PodcastList from "./components/podcast-list.tsx";
 
 function App() {
     const leftMin = (w: number) => {
-        console.log(w)
         return w * 90 / 419;
     }
     const leftMax = (w: number) => {
         return w * 2 / 5;
     }
-    const parentRef = useRef<HTMLDivElement>(null);
-    const [parentWidth, setParentWidth] = useState(0);
-    const [width, setWidth] = useState(leftMax(parentWidth));
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [width, setWidth] = useState(300); // left
+
     const [isDragging, setIsDragging] = useState(false);
+
     const isResizing = useRef(false);
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (isResizing.current) {
-            const newWidth = e.clientX;
-            if (newWidth > leftMin(parentWidth) && newWidth < leftMax(parentWidth)) {
-                setWidth(newWidth);
-            }
-        }
+        if (!isDragging || !isResizing.current || !containerRef.current) return;
+
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const newWidth = e.clientX - containerRect.left;
+        const minWidth = leftMin(containerRect.width);
+        const maxWidth = leftMax(containerRect.width);
+
+        setWidth(Math.min(Math.max(newWidth, minWidth), maxWidth));
+
     }
 
     const handleMouseUp = () => {
         setIsDragging(false);
         isResizing.current = false;
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
     }
 
     const handleMouseDown = () => {
         setIsDragging(true);
         isResizing.current = true;
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", handleMouseUp);
     }
 
     useEffect(() => {
-        if (parentRef.current) {
-            const width = parentRef.current.offsetWidth;
-            setParentWidth(width);
-        }
+        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mouseup", handleMouseUp);
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
     }, []);
 
     return (
         <NavBar>
-            <div ref={parentRef} className="w-full h-full flex bg-black pb-4">
+            <div ref={containerRef} className="w-full h-full flex bg-black pb-4 ">
                 {/*left*/}
-                <div className={`h-full bg-neutral-900 rounded-lg ml-2 mb-2 select-none`}
-                     style={{width: `${width}px`, minWidth: `${leftMin(parentWidth)}px`}}>
+                <div className={`h-full bg-neutral-950 rounded-lg ml-2 mb-2 select-none`}
+                     style={{width: `${width}px`}}>
                     {/*header*/}
                     <header className="text-white font-bold text-md flex py-2 px-4 items-center">
                         Your Library
@@ -64,7 +66,7 @@ function App() {
                     {/*body*/}
                     <div className="w-full h-4/7 overflow-auto">
                         {/*tab1*/}
-                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-800 p-5">
+                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-900 p-5">
                             <div className="font-bold text-md text-white">
                                 Create your first playlist
                             </div>
@@ -72,13 +74,14 @@ function App() {
                                 It's easy, we'll help you
                             </div>
                             <div>
-                                <button className="text-md font-bold text-black bg-white rounded-full px-4 py-1 hover:cursor-pointer transition-colors hover:opacity-90">
+                                <button
+                                    className="text-md font-bold text-black bg-white rounded-full px-4 py-1 hover:cursor-pointer transition-colors hover:opacity-90">
                                     Create playlist
                                 </button>
                             </div>
                         </div>
                         {/*tab2*/}
-                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-800 p-5">
+                        <div className="mx-2 mt-5 rounded-lg h-auto bg-neutral-900 p-5">
                             <div className="font-bold text-md text-white">
                                 Let's find some podcast to follow
                             </div>
@@ -86,7 +89,8 @@ function App() {
                                 We'll keep you updated on new episodes
                             </div>
                             <div>
-                                <button className="text-md font-bold text-black bg-white rounded-full px-4 py-1 hover:cursor-pointer transition-colors hover:opacity-90">
+                                <button
+                                    className="text-md font-bold text-black bg-white rounded-full px-4 py-1 hover:cursor-pointer transition-colors hover:opacity-90">
                                     Browse podcasts
                                 </button>
                             </div>
@@ -120,7 +124,8 @@ function App() {
                         </div>
                         {/*languages*/}
                         <div className="flex pl-5 pt-3">
-                            <button className="flex items-center gap-1 transition-all text-white text-xs font-bold bg-black border-gray-500 hover:border-white hover:cursor-pointer border-2 rounded-full px-4 py-1">
+                            <button
+                                className="flex items-center gap-1 transition-all text-white text-xs font-bold bg-black border-gray-500 hover:border-white hover:cursor-pointer border-2 rounded-full px-4 py-1">
                                 <TbWorld className="text-white font-bold size-5 mt-0.5 transition-all"/>
                                 English
                             </button>
@@ -136,8 +141,11 @@ function App() {
                         className={`h-full w-0.25 group-hover:bg-neutral-500 rounded-sm ${isDragging ? "bg-white" : ""}`}></div>
                 </div>
                 {/*right*/}
-                <div className={`h-full  bg-neutral-900 w-full rounded-lg mr-2`}>
-
+                <div className="flex-1 flex flex-col overflow-auto select-none p-6 rounded-lg mr-2
+                bg-gradient-to-b from-[#202020] via-[#1a1a1a] to-neutral-950  scrollbar-hide
+                ">
+                    <PodcastList key='1'/>
+                    <PodcastList key='2'/>
                 </div>
             </div>
         </NavBar>);

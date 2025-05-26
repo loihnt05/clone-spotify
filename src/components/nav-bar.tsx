@@ -27,14 +27,14 @@ function NavBar({children}: { children: React.ReactNode }) {
                 {/*search*/}
                 <div className="flex justify-center gap-2 pr-10 ">
                     <div className="items-center flex ">
-                        <button className="hover:cursor-pointer bg-neutral-800 p-2 rounded-full flex
+                        <button className="hover:cursor-pointer bg-neutral-900 p-2 rounded-full flex
                         hover:bg-neutral-700 transition-colors">
                             <GoHomeFill className="text-white text-3xl" title="Home"/>
                         </button>
                     </div>
 
                     <div className="flex items-center group ">
-                        <div tabIndex={0} className="flex bg-neutral-800 rounded-full transition-all
+                        <div tabIndex={0} className="flex bg-neutral-900 rounded-full transition-all
                         group-hover:bg-neutral-700 border-3 group-hover:border-gray-700
                          border-transparent focus-within:border-white focus-within:border-3
                          hover:cursor-text"
@@ -47,7 +47,7 @@ function NavBar({children}: { children: React.ReactNode }) {
                             </div>
                             <div className="flex items-center lg:w-100">
                                 <input ref={inputRef} className="focus:outline-none focus: text-white
-                                bg-neutral-800 w-full transition-all group-hover:bg-neutral-700"
+                                bg-neutral-900 w-full transition-all group-hover:bg-neutral-700"
                                        type="text"
                                        placeholder="What do you want to play?"/>
                             </div>
@@ -67,27 +67,27 @@ function NavBar({children}: { children: React.ReactNode }) {
                 {/*login*/}
                 <div className="flex justify-center gap-2">
                     <button
-                        className="text-gray-400 font-bold hover:cursor-pointer transition-colors
+                        className="text-zinc-400 font-bold hover:cursor-pointer transition-colors
                         hover:text-white">Premium
                     </button>
                     <button
-                        className="text-gray-400 font-bold hover:cursor-pointer transition-colors
+                        className="text-zinc-400 font-bold hover:cursor-pointer transition-colors
                         hover:text-white">Support
                     </button>
                     <button
-                        className="text-gray-400 font-bold hover:cursor-pointer transition-colors
+                        className="text-zinc-400 font-bold hover:cursor-pointer transition-colors
                         hover:text-white pr-3">Download
                     </button>
                     <div className="flex items-center">
-                        <div className="border-s-1 border-gray-300 h-2/5"></div>
+                        <div className="border-s-1 border-zinc-300 h-2/5"></div>
                     </div>
                     <div className="flex items-center px-5">
                         <div className="flex justify-center">
-                            <button className="flex items-center gap-1 text-gray-400
-                            group transition-colors font-bold
+                            <button className="flex items-center gap-1 text-zinc-400
+                            group transition-colors font-semibold
                             hover:cursor-pointer hover:text-white">
                                 <GrInstallOption
-                                    className="font-bold mt-1 text-gray-400 group-hover:text-white
+                                    className="font-semibold mt-1 text-zinc-400 group-hover:text-white
                                     transition-colors"/>
                                 Install App
                             </button>

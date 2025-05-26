@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client'
 import './index.css'
 import {BrowserRouter, Route, Routes} from "react-router";
 import App from "./App.tsx";
-import PodcastList from "./components/podcast-list.tsx";
+import Resizable from "./components/component-test.tsx";
 
 
 createRoot(document.getElementById('root')!).render(
@@ -13,8 +13,10 @@ createRoot(document.getElementById('root')!).render(
                 <Route path='/'>
                     <Route index element={<App/>}></Route>
                     <Route path="/test" element={
-                        <PodcastList/>
+                        <Resizable/>
                     }></Route>
+                    <Route path='/test-color'
+                           element={<div className="w-full h-full bg-gradient-to-b from-neutral-600 to-neutral-800"/>} ></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
