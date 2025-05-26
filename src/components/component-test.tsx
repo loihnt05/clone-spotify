@@ -1,49 +1,47 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
-const ResizablePanel: React.FC = () => {
-    const [width, setWidth] = useState(300);
-    const isResizing = useRef(false);
+const HorizontalScroll: React.FC = () => {
+    const scrollRef = useRef<HTMLDivElement>(null);
 
-    const handleMouseDown = () => {
-        isResizing.current = true;
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", handleMouseUp);
+    const scrollLeft = () => {
+        scrollRef.current?.scrollBy({ left: -200, behavior: "smooth" });
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        if (isResizing.current) {
-            const newWidth = e.clientX;
-            if (newWidth > 150 && newWidth < 600) {
-                setWidth(newWidth);
-            }
-        }
-    };
-
-    const handleMouseUp = () => {
-        isResizing.current = false;
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
+    const scrollRight = () => {
+        scrollRef.current?.scrollBy({ left: 200, behavior: "smooth" });
     };
 
     return (
-        <div className="flex h-screen w-full">
-            <div
-                className="bg-gray-100 p-4"
-                style={{ width: `${width}px`, minWidth: "150px" }}
+        <div className="relative w-full">
+            <button
+                onClick={scrollLeft}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-300 hover:bg-gray-400 text-black p-2 rounded-full shadow"
             >
-                <p>Resizable Panel</p>
-            </div>
-            {/* Divider */}
+                ◀
+            </button>
+
             <div
-                onMouseDown={handleMouseDown}
-                className="w-1 cursor-col-resize bg-gray-400 hover:bg-gray-600"
-            />
-            {/* Main Content */}
-            <div className="flex-1 bg-white p-4">
-                <p>Main Content Area</p>
+                ref={scrollRef}
+                className="overflow-x-auto scroll-smooth whitespace-nowrap px-8"
+            >
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                    <div
+                        key={n}
+                        className="inline-block w-64 h-32 bg-blue-300 mx-2 rounded flex items-center justify-center text-xl font-semibold"
+                    >
+                        Box {n}
+                    </div>
+                ))}
             </div>
+
+            <button
+                onClick={scrollRight}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-300 hover:bg-gray-400 text-black p-2 rounded-full shadow"
+            >
+                ▶
+            </button>
         </div>
     );
 };
 
-export default ResizablePanel;
+export default HorizontalScroll;
