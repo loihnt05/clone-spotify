@@ -6,6 +6,7 @@ import {GrInstallOption} from "react-icons/gr";
 import {useRef} from "react";
 
 function NavBar({children}: { children: any }) {
+
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleDivFocus = () => {
@@ -14,7 +15,7 @@ function NavBar({children}: { children: any }) {
         }
     };
     return (
-        <div className="">
+        <div className="w-full h-full flex flex-col">
             <div className="bg-black flex w-full sticky top-0 items-stretch">
                 {/*spotify*/}
                 <div className="flex p-5 hover:cursor-pointer">
@@ -62,6 +63,7 @@ function NavBar({children}: { children: any }) {
                         </div>
                     </div>
                 </div>
+
                 {/*login*/}
                 <div className="flex justify-center gap-2">
                     <button
@@ -105,8 +107,9 @@ function NavBar({children}: { children: any }) {
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div className="w-full h-screen">
+            <div className="h-full w-full">
                 {children}
             </div>
         </div>

@@ -16,6 +16,7 @@ function App() {
     const [width, setWidth] = useState(leftMin(parentWidth));
     const [isDragging, setIsDragging] = useState(false);
     const isResizing = useRef(false);
+
     const handleMouseMove = (e: MouseEvent) => {
         if (isResizing.current) {
             const newWidth = e.clientX;
@@ -38,6 +39,7 @@ function App() {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
     }
+
     useEffect(() => {
         if (parentRef.current) {
             const width = parentRef.current.offsetWidth;
@@ -47,7 +49,7 @@ function App() {
 
     return (
         <NavBar>
-            <div ref={parentRef} className="w-full h-full flex bg-black">
+            <div ref={parentRef} className="w-full h-full flex bg-black pb-4">
                 {/*left*/}
                 <div className={`h-full bg-neutral-900 rounded-lg ml-2 mb-2`}
                      style={{width: `${width}px`, minWidth: `${leftMin(parentWidth)}px`}}>
@@ -91,7 +93,7 @@ function App() {
                         </div>
                     </div>
                     {/*footer*/}
-                    <footer className="w-full h-1/3 pt-10">
+                    <footer className="w-full h-1/3 pt-5">
                         {/*some page footer*/}
                         <div className="text-neutral-400 flex flex-wrap gap-3 py-2 px-5 text-xs">
                             <div>
@@ -112,7 +114,6 @@ function App() {
                             <div>
                                 <a className="hover:cursor-pointer">Accessibility</a>
                             </div>
-
                         </div>
                         <div className="text-white flex flex-wrap gap-3 py-2 px-5 text-xs">
                             <a className="hover:cursor-pointer hover:underline transition-all">Cookies</a>
@@ -135,7 +136,7 @@ function App() {
                         className={`h-full w-0.25 group-hover:bg-neutral-500 rounded-sm ${isDragging ? "bg-white" : ""}`}></div>
                 </div>
                 {/*right*/}
-                <div className={`h-100  bg-neutral-900 w-full rounded-lg mr-2`}>
+                <div className={`h-full  bg-neutral-900 w-full rounded-lg mr-2`}>
 
                 </div>
             </div>
